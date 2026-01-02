@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FreightMate</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">FM</div>
+        <div class="brandText">
+          <div class="name">FreightMate</div>
+          <div class="sub">Ops & Compliance</div>
+        </div>
+      </div>
+      <button class="pill" id="helpBtn">Help</button>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab active" data-screen="home">Home</button>
+      <button class="tab" data-screen="compliance">Compliance</button>
+      <button class="tab" data-screen="dot">DOT Stop</button>
+      <button class="tab" data-screen="incident">Incident</button>
+      <button class="tab" data-screen="docs">Docs</button>
+    </nav>
+
+    <!-- HOME -->
+    <main class="screen active" id="home">
+      <h1 class="title">Home / Status Board</h1>
+
+      <section class="grid">
+        <div class="card ok">
+          <div class="cardTop"><span>🟢</span><span class="cardTitle">Compliance</span></div>
+          <div class="cardValue">Active</div>
+          <div class="cardHint">No urgent flags</div>
+        </div>
+
+        <div class="card warn">
+          <div class="cardTop"><span>⚠️</span><span class="cardTitle">Logs (HOS)</span></div>
+          <div class="cardValue">Review Needed</div>
+          <div class="cardHint">Possible gap detected</div>
+        </div>
+
+        <div class="card ok">
+          <div class="cardTop"><span>🟢</span><span class="cardTitle">Insurance</span></div>
+          <div class="cardValue">On File</div>
+          <div class="cardHint">Keep copy ready</div>
+        </div>
+
+        <div class="card risk">
+          <div class="cardTop"><span>🚩</span><span class="cardTitle">IFTA</span></div>
+          <div class="cardValue">Receipts Missing</div>
+          <div class="cardHint">Add fuel receipts</div>
+        </div>
+      </section>
+
+      <section class="actions">
+        <button class="bigBtn" data-go="dot">🚔 DOT Stop Mode</button>
+        <button class="bigBtn" data-go="compliance">📋 Compliance</button>
+        <button class="bigBtn" data-go="docs">📂 Documents</button>
+        <button class="bigBtn" data-go="incident">🚨 Incident</button>
+      </section>
+
+      <div class="helpbar">
+        <div>Need help with this screen?</div>
+        <button class="linkBtn" data-help="home">Ask FreightMate</button>
+        <button class="linkBtn" data-help="risk">What’s at risk?</button>
+      </div>
+
+      <details class="details">
+        <summary>Why this matters</summary>
+        This screen answers one thing fast: “Am I okay right now?” If a card is ⚠️ or 🚩, tap it or go to the matching tab.
+      </details>
+    </main>
+
+    <!-- COMPLIANCE -->
+    <main class="screen" id="compliance">
+      <h1 class="title">Compliance</h1>
+
+      <div class="stack">
+        <div class="row ok"><span>🟢</span><span>MC / Authority</span><span class="right">Active</span></div>
+        <div class="row ok"><span>🟢</span><span>Insurance Cert</span><span class="right">On File</span></div>
+        <div class="row warn"><span>⚠️</span><span>Inspection PDF</span><span class="right">Missing</span></div>
+        <div class="row risk"><span>🚩</span><span>IFTA Receipts</span><span class="right">Incomplete</span></div>
+      </div>
+
+      <section class="actions">
+        <button class="bigBtn" data-go="docs">⬆️ Upload Documents</button>
+        <button class="bigBtn" id="fixGuideBtn">🛠 View Fix Guide</button>
+      </section>
+
+      <div class="helpbar">
+        <div>Help with compliance items</div>
+        <button class="linkBtn" data-help="compliance">Why is this flagged?</button>
+        <button class="linkBtn" data-help="next">What do I do next?</button>
+      </div>
+    </main>
+
+    <!-- DOT STOP -->
+    <main class="screen" id="dot">
+      <h1 class="title">DOT Stop Mode</h1>
+
+      <div class="twoCol">
+        <div class="card ok">
+          <div class="cardTop"><span>🟢</span><span class="cardTitle">DO</span></div>
+          <ul class="list">
+            <li>Hands visible</li>
+            <li>Answer only what’s asked</li>
+            <li>Provide requested docs</li>
+          </ul>
+        </div>
+
+        <div class="card risk">
+          <div class="cardTop"><span>🚩</span><span class="cardTitle">DO NOT</span></div>
+          <ul class="list">
+            <li>Volunteer extra info</li>
+            <li>Argue roadside</li>
+            <li>Guess if unsure</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card warn">
+        <div class="cardTop"><span>⚠️</span><span class="cardTitle">Checklist</span></div>
+        <div class="checks">
+          <label><input type="checkbox" /> License</label>
+          <label><input type="checkbox" /> Registration</label>
+          <label><input type="checkbox" /> Insurance</label>
+          <label><input type="checkbox" /> Logs</label>
+          <label><input type="checkbox" /> BOL</label>
+        </div>
+      </div>
+
+      <section class="actions">
+        <button class="bigBtn" data-go="docs">📂 Show Documents</button>
+        <button class="bigBtn" id="stopTimerBtn">🕒 Start Stop Timer</button>
+      </section>
+
+      <div class="helpbar">
+        <div>Need help during a stop?</div>
+        <button class="linkBtn" data-help="dot">Ask FreightMate</button>
+      </div>
+    </main>
+
+    <!-- INCIDENT -->
+    <main class="screen" id="incident">
+      <h1 class="title">Incident / Wreck Mode</h1>
+
+      <div class="card warn">
+        <div class="cardTop"><span>⚠️</span><span class="cardTitle">Immediate Steps</span></div>
+        <ol class="list">
+          <li>Make it safe (hazards, triangles if available)</li>
+          <li>Call emergency services if needed</li>
+          <li>Document before moving anything (when safe)</li>
+        </ol>
+      </div>
+
+      <div class="card ok">
+        <div class="cardTop"><span>🟢</span><span class="cardTitle">Document</span></div>
+        <ul class="list">
+          <li>Photos: vehicles, scene, signage</li>
+          <li>Names + badge numbers</li>
+          <li>Witness contact info</li>
+        </ul>
+      </div>
+
+      <div class="card risk">
+        <div class="cardTop"><span>🚩</span><span class="cardTitle">DO NOT</span></div>
+        <ul class="list">
+          <li>Admit fault</li>
+          <li>Speculate causes</li>
+          <li>Sign statements roadside</li>
+        </ul>
+      </div>
+
+      <section class="actions">
+        <button class="bigBtn" id="photoBtn">📸 Capture Photo Notes</button>
+        <button class="bigBtn" id="incidentLogBtn">📝 Create Incident Log</button>
+      </section>
+
+      <div class="helpbar">
+        <div>Help with this incident screen</div>
+        <button class="linkBtn" data-help="incident">Ask FreightMate</button>
+      </div>
+    </main>
+
+    <!-- DOCS -->
+    <main class="screen" id="docs">
+      <h1 class="title">Documents</h1>
+
+      <div class="card ok">
+        <div class="cardTop"><span>🟢</span><span class="cardTitle">On File</span></div>
+        <div class="chips">
+          <span class="chip">Insurance</span>
+          <span class="chip">Registration</span>
+        </div>
+      </div>
+
+      <div class="card warn">
+        <div class="cardTop"><span>⚠️</span><span class="cardTitle">Missing</span></div>
+        <div class="chips">
+          <span class="chip warnChip">Inspection PDF</span>
+        </div>
+      </div>
+
+      <div class="card risk">
+        <div class="cardTop"><span>🚩</span><span class="cardTitle">Receipts</span></div>
+        <div class="chips">
+          <span class="chip riskChip">IFTA Fuel Receipts</span>
+        </div>
+      </div>
+
+      <section class="actions">
+        <button class="bigBtn" id="uploadBtn">⬆️ Upload (Demo)</button>
+        <button class="bigBtn" id="snapBtn">➕ Snap Receipt (Demo)</button>
+      </section>
+
+      <div class="helpbar">
+        <div>Need help with documents?</div>
+        <button class="linkBtn" data-help="docs">Ask FreightMate</button>
+        <button class="linkBtn" data-help="audit">What breaks in audits?</button>
+      </div>
+
+      <details class="details">
+        <summary>Note</summary>
+        This is a demo UI. Next step later is real uploads (Netlify/Supabase/Firebase). For now we’re proving the app feel.
+      </details>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal" id="modal" aria-hidden="true">
+      <div class="modalCard">
+        <div class="modalTop">
+          <div class="modalTitle" id="modalTitle">Help</div>
+          <button class="pill" id="closeModal">Close</button>
+        </div>
+        <div class="modalBody" id="modalBody"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
