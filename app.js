@@ -72,3 +72,15 @@ document.getElementById("uploadBtn").addEventListener("click", () => {
 document.getElementById("snapBtn").addEventListener("click", () => {
   openModal("Snap Receipt (Demo)", "Next version: camera receipt capture + simple tagging.");
 });
+// Force onboarding on first load if profile missing
+document.addEventListener("DOMContentLoaded", () => {
+  const profile = loadProfile();
+  if (!profile.driverName || !profile.company) {
+    const ob = document.getElementById("onboard");
+    if (ob) {
+      ob.classList.add("show");
+      ob.setAttribute("aria-hidden", "false");
+    }
+  }
+  renderVault();
+});
