@@ -247,3 +247,23 @@
   <script src="app.js"></script>
 </body>
 </html>
+<button class="tab" data-screen="documents">Documents</button>
+
+<main class="screen" id="documents">
+  <h1 class="title">Documents</h1>
+
+  <section class="card">
+    <div class="cardTop">
+      <span>📂</span><span class="cardTitle">Tap a doc to add a photo</span>
+    </div>
+    <div id="docGrid" class="docGrid"></div>
+  </section>
+
+  <div class="helpbar">
+    <div>Need help with Documents?</div>
+    <button class="linkBtn" id="docsHelpBtn">Help</button>
+  </div>
+
+  <!-- Hidden input that triggers camera/photo picker -->
+  <input id="docFileInput" type="file" accept="image/*" style="display:none;" />
+</main>
